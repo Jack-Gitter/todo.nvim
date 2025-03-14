@@ -22,15 +22,14 @@ local state = {
 }
 
 local open_popup = function()
-    if not vim.api.nvim_buf_is_valid(state.buf) then
-        state.buf = vim.api.nvim_create_buf(false, false)
-    end
+    state.buf = vim.api.nvim_create_buf(false, false)
     state.win = vim.api.nvim_open_win(state.buf, true, opts.win_opts)
     vim.cmd("edit!" .. opts.fullpath)
 end
 
 local close_popup = function()
     vim.api.nvim_win_close(state.win, true)
+    vim.api.nvim_buf_delete(state.buf, { force = true })
 end
 
 local window_exists = function(window_id)
