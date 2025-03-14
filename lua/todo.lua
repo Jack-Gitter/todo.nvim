@@ -26,7 +26,7 @@ local open_popup = function()
         state.buf = vim.api.nvim_create_buf(false, false)
     end
     state.win = vim.api.nvim_open_win(state.buf, true, opts.win_opts)
-    vim.cmd("edit" .. opts.fullpath)
+    vim.cmd("edit!" .. opts.fullpath)
 end
 
 local close_popup = function()
